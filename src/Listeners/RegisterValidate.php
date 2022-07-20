@@ -3,7 +3,7 @@
 /*
  * This file is part of fof/recaptcha.
  *
- * Copyright (c) FriendsOfFlarum.
+ * Copyright (c) 2019 FriendsOfFlarum.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,7 +13,6 @@ namespace FoF\ReCaptcha\Listeners;
 
 use Flarum\User\Event\Saving;
 use FoF\ReCaptcha\Validators\RecaptchaValidator;
-use Illuminate\Support\Arr;
 
 class RegisterValidate
 {
@@ -34,7 +33,7 @@ class RegisterValidate
     {
         if (!$event->user->exists) {
             $this->validator->assertValid([
-                'recaptcha' => Arr::get($event->data, 'attributes.g-recaptcha-response'),
+                'recaptcha' => array_get($event->data, 'attributes.g-recaptcha-response'),
             ]);
         }
     }
